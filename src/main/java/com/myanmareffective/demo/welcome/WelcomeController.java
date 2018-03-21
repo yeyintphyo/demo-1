@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class WelcomeController {
 
-	private static final String WELCOME_PATH = "/welcome";
+	private static final String WELCOME_PATH = "welcome";
 
 	@GetMapping("/")
 	public ModelAndView login() {
