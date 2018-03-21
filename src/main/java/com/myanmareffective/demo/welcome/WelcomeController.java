@@ -10,7 +10,7 @@ public class WelcomeController {
 	private static final String WELCOME_PATH = "welcome";
 
 	@GetMapping("/")
-	public ModelAndView login() {
+	public ModelAndView welcome() {
 		ModelAndView mav = new ModelAndView(WELCOME_PATH);
 		getTicketRevenue(mav);
 		return mav;
