@@ -1,11 +1,12 @@
 package com.myanmareffective.demo.welcome;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.math.BigDecimal;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class TicketRevenueTest {
 
@@ -16,6 +17,16 @@ public class TicketRevenueTest {
 	public void setUp() {
 		ticketRevenue = new TicketRevenue();
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void failIfLessThanZeroTicketsAreSold() {
+		ticketRevenue.estimateTotalRevenue(-1);
+	}
+
+	@Test
+	public void zeroSalesEqualsZeroRevenue() {
+		assertThat(BigDecimal.ZERO, is(ticketRevenue.estimateTotalRevenue(0)));
+	}
 
 	@Test
 	public void oneTicketSoldIsThirtyInRevenue() {
@@ -23,4 +34,14 @@ public class TicketRevenueTest {
 		assertThat(expectedRevenue, is(ticketRevenue.estimateTotalRevenue(1)));
 	}
 
+	@Test
+	public void tenTicketsSoldIsThreeHundredInRevenue() {
+		expectedRevenue = new BigDecimal("300");
+		assertThat(expectedRevenue, is(ticketRevenue.estimateTotalRevenue(10)));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void failIfMoreThanOneHundredTicketsAreSold() {
+		ticketRevenue.estimateTotalRevenue(101);
+	}
 }

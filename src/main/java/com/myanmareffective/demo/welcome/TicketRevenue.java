@@ -6,11 +6,11 @@ public class TicketRevenue {
 
 	private final static int TICKET_PRICE = 30;
 
-	public BigDecimal estimateTotalRevenue(int numberOfTicketsSold) {
-		BigDecimal totalRevenue = BigDecimal.ZERO;
-		if (numberOfTicketsSold == 1) {
-			totalRevenue = new BigDecimal(TICKET_PRICE * numberOfTicketsSold);
+	public BigDecimal estimateTotalRevenue(int numberOfTicketsSold)
+			throws IllegalArgumentException {
+		if (numberOfTicketsSold < 0 || numberOfTicketsSold > 100) {
+			throw new IllegalArgumentException("Tix sold must == 1..100");
 		}
-		return totalRevenue;
+		return new BigDecimal(TICKET_PRICE * numberOfTicketsSold);
 	}
 }
