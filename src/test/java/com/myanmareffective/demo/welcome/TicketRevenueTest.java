@@ -31,7 +31,7 @@ public class TicketRevenueTest {
 	@Test
 	public void oneTicketSoldIsThirtyInRevenue() {
 		expectedRevenue = new BigDecimal("30");
-		assertThat(expectedRevenue, is(ticketRevenue.estimateTotalRevenue(1)));
+		assertThat(expectedRevenue, is(ticketRevenue.estimateTotalRevenue(3)));
 	}
 
 	@Test
